@@ -23,8 +23,8 @@ A complete, working React + Vite + TypeScript demo application that integrates w
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/Hlybchenko/ravatar-api-demo.git
-cd ravatar-api-demo
+git clone https://github.com/RAVATAR-AI/rvtr-api-demo.git
+cd rvtr-api-demo
 ```
 
 2. **Install dependencies** (using Yarn only):
