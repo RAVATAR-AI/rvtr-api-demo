@@ -1,22 +1,11 @@
 # RAVATAR API Demo
 
-A complete, working React + Vite + TypeScript demo application that integrates with the RAVATAR API for real-time avatar interactions via WebSocket.
-
-## 🚀 Features
-
-- **JWT Authentication**: Secure authentication flow with automatic token management
-- **Connection Management**: Load avatar, languages, and session data from RAVATAR API
-- **Real-time WebSocket Communication**: Chat with avatars via WebSocket text messages
-- **User ID Persistence**: Stable UUID generation and localStorage persistence
-- **Error Handling**: Automatic retry logic for 503/504 errors, proper handling of 402/403 status codes
-- **Debug Logging**: Configurable debug logs for troubleshooting
-- **Clean UI**: Minimal, functional interface without heavy UI libraries
-- **Type-Safe**: Strict TypeScript types for all API and WebSocket messages
+Public demo application showcasing how to integrate the **RAVATAR API**.
 
 ## 📋 Prerequisites
 
-- **Node.js**: Version 20.x or later
-- **Yarn**: Version 1.22.x or later
+- **Node.js**: v20+
+- **Yarn**: v1.22+
 
 ## 🛠️ Installation
 
@@ -45,29 +34,7 @@ yarn dev
 
 The application will be available at `http://localhost:5173`
 
-### Production Build
-
-Build for production:
-
-```bash
-yarn build
-```
-
-Preview the production build:
-
-```bash
-yarn preview
-```
-
-### Linting
-
-Run ESLint:
-
-```bash
-yarn lint
-```
-
-## 📖 Step-by-Step Guide
+## 📖 How to run the demo (step by step)
 
 Follow these steps to use the RAVATAR API Demo:
 
@@ -77,7 +44,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 1. Open the application in your browser
 2. Go to the **Settings** tab (⚙️)
-3. Enter your Project ID
+3. Enter your **RAVATAR Project ID**
 
 ### Step 2: Get JWT Token
 
@@ -102,12 +69,12 @@ Follow these steps to use the RAVATAR API Demo:
 
 ![Step 4 – Select Avatar and Language](./screenshots/step-4-avatar-language.png)
 
-1. Choose an avatar from the dropdown menu
-2. Choose a language from the dropdown menu
-3. Both selections are automatically saved
+1. Both selections are automatically saved
 
 ### Step 5: Connect WebSocket
 
+
+![Step 5.0 – Switch to the chat](./screenshots/step-7-live-mode.png)
 ![Step 5 – WebSocket Connected](./screenshots/step-5-ws-connected.png)
 
 1. Switch to the **Chat** tab (💬)
@@ -122,15 +89,12 @@ Follow these steps to use the RAVATAR API Demo:
 1. Type your message in the input field
 2. Press **Enter** or click **"Send"**
 3. View assistant responses in the message list
-4. If a response includes a `fileUrl`, you'll see an "Open/Play" link
 
 ### Step 7: Live Mode (3D Avatar + Voice Interaction)
 
-![Step 7 – Live Mode Pixel Streaming](./screenshots/step-7-live-mode.png)
-
 Live Mode allows you to interact with a real-time **3D avatar** using **voice** via Pixel Streaming.
 
-#### How it works
+#### Live Mode flow
 
 1. Make sure:
    - JWT token is received
@@ -305,6 +269,12 @@ To see detailed logging:
 - **Yarn**: Package manager (no npm usage)
 - **Native WebSocket API**: Real-time communication
 - **Fetch API**: HTTP requests
+
+## 🎯 Who this demo is for
+
+- Developers integrating Ravatar into web applications
+- Teams evaluating Live Mode and Pixel Streaming
+- Anyone looking for a minimal, production-style Ravatar reference implementation
 
 ## 📝 License
 
