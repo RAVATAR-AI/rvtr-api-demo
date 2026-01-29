@@ -1,6 +1,6 @@
 import { RavatarApiError, NetworkError } from "./errors";
 
-const DEBUG = import.meta.env.VITE_DEBUG_LOGS === "true";
+const DEBUG = true;
 
 // Retry configuration constants
 const MAX_RETRY_ATTEMPTS = 3;

@@ -4,9 +4,9 @@ import type {
   WsEventHandler,
   WsErrorHandler,
   WsCloseHandler,
-} from './wsTypes';
+} from "./wsTypes";
 
-const DEBUG = import.meta.env.VITE_DEBUG_LOGS === 'true';
+const DEBUG = true;
 
 export class RavatarWsClient {
   private ws: WebSocket | null = null;
@@ -27,20 +27,20 @@ export class RavatarWsClient {
 
   connect(): void {
     if (this.ws?.readyState === WebSocket.OPEN) {
-      if (DEBUG) console.debug('WebSocket already connected');
+      if (DEBUG) console.debug("WebSocket already connected");
       return;
     }
 
     try {
-      if (DEBUG) console.debug('Connecting to WebSocket:', this.config.url);
+      if (DEBUG) console.debug("Connecting to WebSocket:", this.config.url);
       this.ws = new WebSocket(this.config.url);
 
       this.ws.onopen = () => {
         this.reconnectCount = 0;
-        if (DEBUG) console.debug('WebSocket connected');
+        if (DEBUG) console.debug("WebSocket connected");
         this.emit({
-          type: 'connection',
-          data: { status: 'connected' },
+          type: "connection",
+          data: { status: "connected" },
           timestamp: new Date().toISOString(),
         });
       };
@@ -48,26 +48,26 @@ export class RavatarWsClient {
       this.ws.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data);
-          if (DEBUG) console.debug('WebSocket message received:', data);
+          if (DEBUG) console.debug("WebSocket message received:", data);
           this.emit({
-            type: 'message',
+            type: "message",
             data,
             timestamp: new Date().toISOString(),
           });
         } catch (error) {
-          console.error('Failed to parse WebSocket message:', error);
+          console.error("Failed to parse WebSocket message:", error);
         }
       };
 
       this.ws.onerror = (error) => {
-        if (DEBUG) console.debug('WebSocket error:', error);
+        if (DEBUG) console.debug("WebSocket error:", error);
         this.errorHandlers.forEach((handler) => handler(error));
       };
 
       this.ws.onclose = (event) => {
-        if (DEBUG) console.debug('WebSocket closed:', event.code, event.reason);
+        if (DEBUG) console.debug("WebSocket closed:", event.code, event.reason);
         this.emit({
-          type: 'close',
+          type: "close",
           timestamp: new Date().toISOString(),
         });
 
@@ -78,7 +78,9 @@ export class RavatarWsClient {
           this.reconnectCount++;
           const delay = this.config.reconnectDelay;
           if (DEBUG) {
-            console.debug(`Reconnecting in ${delay}ms (attempt ${this.reconnectCount}/${this.config.reconnectAttempts})`);
+            console.debug(
+              `Reconnecting in ${delay}ms (attempt ${this.reconnectCount}/${this.config.reconnectAttempts})`,
+            );
           }
           setTimeout(() => this.connect(), delay);
         } else {
@@ -86,12 +88,12 @@ export class RavatarWsClient {
         }
       };
     } catch (error) {
-      console.error('Failed to create WebSocket connection:', error);
+      console.error("Failed to create WebSocket connection:", error);
     }
   }
 
   disconnect(): void {
-    if (DEBUG) console.debug('Disconnecting WebSocket');
+    if (DEBUG) console.debug("Disconnecting WebSocket");
     this.shouldReconnect = false;
     if (this.ws) {
       this.ws.close();
@@ -102,10 +104,10 @@ export class RavatarWsClient {
   send(data: unknown): void {
     if (this.ws?.readyState === WebSocket.OPEN) {
       const message = JSON.stringify(data);
-      if (DEBUG) console.debug('Sending WebSocket message:', data);
+      if (DEBUG) console.debug("Sending WebSocket message:", data);
       this.ws.send(message);
     } else {
-      console.warn('WebSocket is not connected');
+      console.warn("WebSocket is not connected");
     }
   }
 

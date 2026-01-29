@@ -1,11 +1,11 @@
-# Ravatar API Demo
+# RAVATAR API Demo
 
-A complete, working React + Vite + TypeScript demo application that integrates with the Ravatar API for real-time avatar interactions via WebSocket.
+A complete, working React + Vite + TypeScript demo application that integrates with the RAVATAR API for real-time avatar interactions via WebSocket.
 
 ## 🚀 Features
 
 - **JWT Authentication**: Secure authentication flow with automatic token management
-- **Connection Management**: Load avatar, languages, and session data from Ravatar API
+- **Connection Management**: Load avatar, languages, and session data from RAVATAR API
 - **Real-time WebSocket Communication**: Chat with avatars via WebSocket text messages
 - **User ID Persistence**: Stable UUID generation and localStorage persistence
 - **Error Handling**: Automatic retry logic for 503/504 errors, proper handling of 402/403 status codes
@@ -31,20 +31,6 @@ cd rvtr-api-demo
 
 ```bash
 yarn install
-```
-
-3. **Configure environment variables**:
-
-```bash
-.env
-```
-
-Edit `.env` and configure your Ravatar API settings:
-
-```env
-VITE_RAVATAR_API_URL=https://chat.rvtr.ai
-VITE_RAVATAR_WS_URL=wss://chat.rvtr.ai/ws/chat
-VITE_DEBUG_LOGS=true
 ```
 
 ## 🎯 Usage
@@ -83,21 +69,27 @@ yarn lint
 
 ## 📖 Step-by-Step Guide
 
-Follow these steps to use the Ravatar API Demo:
+Follow these steps to use the RAVATAR API Demo:
 
 ### Step 1: Configure API
 
+![Step 1 – Set Project ID](./screenshots/step-1-set-project-id.png)
+
 1. Open the application in your browser
 2. Go to the **Settings** tab (⚙️)
-3. Enter your User ID and Project ID
+3. Enter your Project ID
 
 ### Step 2: Get JWT Token
+
+![Step 2 – Get JWT Token](./screenshots/step-2-get-jwt.png)
 
 1. Click the **"Get JWT"** button
 2. Wait for the JWT token to be retrieved
 3. Status will show ✅ success when complete
 
 ### Step 3: Load Connection Data
+
+![Step 3 – Load Connection](./screenshots/step-3-load-connection.png)
 
 1. Click the **"Load Connection"** button
 2. This retrieves:
@@ -108,11 +100,15 @@ Follow these steps to use the Ravatar API Demo:
 
 ### Step 4: Use loaded connection data (Avatar & Language)
 
+![Step 4 – Select Avatar and Language](./screenshots/step-4-avatar-language.png)
+
 1. Choose an avatar from the dropdown menu
 2. Choose a language from the dropdown menu
 3. Both selections are automatically saved
 
 ### Step 5: Connect WebSocket
+
+![Step 5 – WebSocket Connected](./screenshots/step-5-ws-connected.png)
 
 1. Switch to the **Chat** tab (💬)
 2. Click the **"Connect WS"** button
@@ -121,12 +117,16 @@ Follow these steps to use the Ravatar API Demo:
 
 ### Step 6: Start Chatting
 
+![Step 6 – Chat Messages](./screenshots/step-6-chat.png)
+
 1. Type your message in the input field
 2. Press **Enter** or click **"Send"**
 3. View assistant responses in the message list
 4. If a response includes a `fileUrl`, you'll see an "Open/Play" link
 
 ### Step 7: Live Mode (3D Avatar + Voice Interaction)
+
+![Step 7 – Live Mode Pixel Streaming](./screenshots/step-7-live-mode.png)
 
 Live Mode allows you to interact with a real-time **3D avatar** using **voice** via Pixel Streaming.
 
@@ -155,7 +155,6 @@ Live Mode allows you to interact with a real-time **3D avatar** using **voice** 
    ```
 
 4. The returned `streamingUrl` is rendered inside an `iframe`.
-
    - This opens a Pixel Streaming session with a **3D avatar**
    - The avatar responds to **real-time voice input**
    - ⚠️ The `iframe` URL must include the JWT token obtained in **Step 2**
@@ -242,15 +241,6 @@ The application handles the following HTTP status codes:
 - **402 Payment Required**: Account balance or payment issue
 - **503/504 Service Unavailable**: Automatic retry with exponential backoff (1s, 2s, 4s delays)
 
-### Debug Logging
-
-Enable debug logs by setting `VITE_DEBUG_LOGS=true` in your `.env` file. This will output:
-
-- HTTP requests and responses
-- WebSocket connection events
-- Message sending and receiving
-- Error details
-
 ## 🐛 Troubleshooting
 
 ### "Failed to get JWT token"
@@ -259,7 +249,6 @@ Enable debug logs by setting `VITE_DEBUG_LOGS=true` in your `.env` file. This wi
 - **Solution**:
   - Verify your API URL in Settings
   - Check your internet connection
-  - Enable debug logs (`VITE_DEBUG_LOGS=true`) to see detailed error messages
 
 ### "Failed to load connection"
 
@@ -272,14 +261,13 @@ Enable debug logs by setting `VITE_DEBUG_LOGS=true` in your `.env` file. This wi
 
 - **Cause**: Invalid JWT token or WebSocket URL
 - **Solution**:
-  - Verify `VITE_RAVATAR_WS_URL` in your `.env` file
   - Ensure JWT token is valid (refresh if needed)
   - Check browser console for WebSocket errors
 
 ### "Payment required" error (402)
 
 - **Cause**: Account has insufficient balance or payment issue
-- **Solution**: Check your Ravatar account balance and payment status
+- **Solution**: Check your RAVATAR account balance and payment status
 
 ### Messages not sending
 
@@ -298,7 +286,6 @@ Enable debug logs by setting `VITE_DEBUG_LOGS=true` in your `.env` file. This wi
 
 To see detailed logging:
 
-1. Edit `.env` file: `VITE_DEBUG_LOGS=true`
 2. Restart development server: `yarn dev`
 3. Open browser console (F12)
 4. All API and WebSocket events will be logged

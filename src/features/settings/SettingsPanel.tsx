@@ -4,6 +4,7 @@ import { storage } from "../../utils/storage";
 import type { Avatar, Language, ConnectionResponse } from "../../types/ravatar";
 
 import styles from "./SettingsPanel.module.css";
+import { generateUserID } from "../../utils/uuid";
 
 interface SettingsPanelProps {
   onApiUrlSet: (url: string) => void;
@@ -16,7 +17,7 @@ interface SettingsPanelProps {
   step4Complete: boolean;
 }
 
-const STORAGE_USER_ID_KEY = "ravatar-user-id";
+const STORAGE_USER_ID_KEY = "user-id";
 const STORAGE_PROJECT_ID_KEY = "ravatar-project-id";
 
 export function SettingsPanel({
@@ -29,12 +30,11 @@ export function SettingsPanel({
   step3Complete,
   step4Complete,
 }: SettingsPanelProps) {
-  const [apiUrl] = useState<string>(() => {
-    return import.meta.env.VITE_RAVATAR_API_URL || "";
-  });
+  const [apiUrl] = useState<string>("https://chat.rvtr.ai");
 
-  const [userId, setUserId] = useState<string>(() => {
-    return storage.get<string>(STORAGE_USER_ID_KEY) || "";
+  const [userId] = useState<string>(() => {
+    const storedUserId = storage.get<string>(STORAGE_USER_ID_KEY);
+    return storedUserId || generateUserID();
   });
 
   const [projectId, setProjectId] = useState<string>(() => {
@@ -153,9 +153,7 @@ export function SettingsPanel({
   // Step 2 action: request a JWT for the provided user/project pair
   const handleGetJWT = async () => {
     if (!api) {
-      setError(
-        "Missing API URL. Set VITE_RAVATAR_API_URL in your environment.",
-      );
+      setError("Missing API URL. ");
       return;
     }
 
@@ -320,19 +318,19 @@ export function SettingsPanel({
         className={`${styles.section} ${step1Active ? "" : styles.sectionDisabled}`}
       >
         <h3 className={styles.sectionTitle}>
-          {getStepStatus(step1IsComplete, step1Active, "idle")} Step 1: Set User
-          ID and Project ID
+          {getStepStatus(step1IsComplete, step1Active, "idle")} Step 1: Set
+          Project ID
         </h3>
 
         <div className={styles.field}>
-          <label className={styles.label}>User ID</label>
+          <label className={styles.label}>User ID (random Unique ID)</label>
           <input
             type="text"
             value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-            placeholder="Ravatar user ID"
+            // onChange={(e) => setUserId(e.target.value)}
+            placeholder="User ID"
             className={styles.input}
-            disabled={!step1Active}
+            disabled
           />
         </div>
 
@@ -354,148 +352,140 @@ export function SettingsPanel({
       </div>
 
       {/* Step 2: Get JWT Token */}
-      {step2Active && (
-        <div
-          className={`${styles.section} ${step2Active ? "" : styles.sectionDisabled}`}
-        >
-          <h3 className={styles.sectionTitle}>
-            {getStepStatus(step2Complete, step2Active, jwtStatus)} Step 2: Get
-            JWT token
-          </h3>
-          {!step2Active && (
-            <div className={styles.stepHint}>
-              ⚠️ Complete Step 1 to enable this step
-            </div>
-          )}
-          <div className={styles.statusRow}>
-            <span>
-              JWT status: {getStatusEmoji(jwtStatus)} {jwtStatus}
-            </span>
-            <button
-              onClick={handleGetJWT}
-              disabled={!step2Active || jwtStatus === "loading"}
-              className={`${styles.button} ${!step2Active || jwtStatus === "loading" ? styles.buttonDisabled : ""}`}
-            >
-              {jwtStatus === "loading" ? "Getting JWT..." : "Get JWT"}
-            </button>
+      <div
+        className={`${styles.section} ${step2Active ? "" : styles.sectionDisabled}`}
+      >
+        <h3 className={styles.sectionTitle}>
+          {getStepStatus(step2Complete, step2Active, jwtStatus)} Step 2: Get JWT
+          token
+        </h3>
+        {!step2Active && (
+          <div className={styles.stepHint}>
+            ⚠️ Complete Step 1 to enable this step
           </div>
-          {step2Complete && (
-            <div className={styles.stepCompleteHint}>
-              ✓ JWT token received successfully
-            </div>
-          )}
+        )}
+        <div className={styles.statusRow}>
+          <span>
+            JWT status: {getStatusEmoji(jwtStatus)} {jwtStatus}
+          </span>
+          <button
+            onClick={handleGetJWT}
+            disabled={!step2Active || jwtStatus === "loading"}
+            className={`${styles.button} ${!step2Active || jwtStatus === "loading" ? styles.buttonDisabled : ""}`}
+          >
+            {jwtStatus === "loading" ? "Getting JWT..." : "Get JWT"}
+          </button>
         </div>
-      )}
+        {step2Complete && (
+          <div className={styles.stepCompleteHint}>
+            ✓ JWT token received successfully
+          </div>
+        )}
+      </div>
 
       {/* Step 3: Load Connection */}
-      {step3Active && (
-        <div
-          className={`${styles.section} ${step3Active ? "" : styles.sectionDisabled}`}
-        >
-          <h3 className={styles.sectionTitle}>
-            {getStepStatus(step3Complete, step3Active, connectionStatus)} Step
-            3: Load connection
-          </h3>
-          {!step3Active && (
-            <div className={styles.stepHint}>
-              ⚠️ Complete Step 2 to enable this step
-            </div>
-          )}
-          <div className={styles.statusRow}>
-            <span>
-              Connection status: {getStatusEmoji(connectionStatus)}{" "}
-              {connectionStatus}
-            </span>
-            <button
-              onClick={handleLoadConnection}
-              disabled={!step3Active || connectionStatus === "loading"}
-              className={`${styles.button} ${!step3Active || connectionStatus === "loading" ? styles.buttonDisabled : ""}`}
-            >
-              {connectionStatus === "loading"
-                ? "Loading..."
-                : "Load connection"}
-            </button>
+      <div
+        className={`${styles.section} ${step3Active ? "" : styles.sectionDisabled}`}
+      >
+        <h3 className={styles.sectionTitle}>
+          {getStepStatus(step3Complete, step3Active, connectionStatus)} Step 3:
+          Load connection
+        </h3>
+        {!step3Active && (
+          <div className={styles.stepHint}>
+            ⚠️ Complete Step 2 to enable this step
           </div>
-          {sessionId && (
-            <div className={styles.info}>Session ID: {sessionId}</div>
-          )}
-          {step3Complete && (
-            <div className={styles.stepCompleteHint}>
-              ✓ Connection loaded successfully
-            </div>
-          )}
+        )}
+        <div className={styles.statusRow}>
+          <span>
+            Connection status: {getStatusEmoji(connectionStatus)}{" "}
+            {connectionStatus}
+          </span>
+          <button
+            onClick={handleLoadConnection}
+            disabled={!step3Active || connectionStatus === "loading"}
+            className={`${styles.button} ${!step3Active || connectionStatus === "loading" ? styles.buttonDisabled : ""}`}
+          >
+            {connectionStatus === "loading" ? "Loading..." : "Load connection"}
+          </button>
         </div>
-      )}
+        {sessionId && (
+          <div className={styles.info}>Session ID: {sessionId}</div>
+        )}
+        {step3Complete && (
+          <div className={styles.stepCompleteHint}>
+            ✓ Connection loaded successfully
+          </div>
+        )}
+      </div>
 
       {/* Step 4: Select Avatar & Language */}
-      {step4Active && (
-        <div
-          ref={step4Ref}
-          className={`${styles.section} ${step4Active ? "" : styles.sectionDisabled}`}
-        >
-          <h3 className={styles.sectionTitle}>
-            {getStepStatus(step4Complete, step4Active, "idle")} Step 4: Use
-            loaded connection data (Avatar & Language)
-          </h3>
-          {!step4Active && (
-            <div className={styles.stepHint}>
-              ⚠️ Complete Step 3 to load connection data and enable this step
-            </div>
-          )}
+      <div
+        ref={step4Ref}
+        className={`${styles.section} ${step4Active ? "" : styles.sectionDisabled}`}
+      >
+        <h3 className={styles.sectionTitle}>
+          {getStepStatus(step4Complete, step4Active, "idle")} Step 4: Use loaded
+          connection data (Avatar & Language)
+        </h3>
+        {!step4Active && (
+          <div className={styles.stepHint}>
+            ⚠️ Complete Step 3 to load connection data and enable this step
+          </div>
+        )}
 
-          {step4Active && connectionStatus === "success" && (
-            <>
-              <div className={styles.field}>
-                <label className={styles.label}>Avatar</label>
-                <select
-                  value={selectedAvatar}
-                  onChange={(e) => handleAvatarChange(e.target.value)}
-                  className={styles.select}
-                  disabled={!step4Active}
-                >
-                  {avatars.map((avatar) => {
-                    const id = getAvatarId(avatar);
-                    const label = avatar.name ? `${avatar.name} (${id})` : id;
-                    return (
-                      <option key={id} value={id}>
-                        {label}
-                      </option>
-                    );
-                  })}
-                </select>
-                {selectedAvatar && (
-                  <div className={styles.info}>Avatar ID: {selectedAvatar}</div>
-                )}
-              </div>
-
-              <div className={styles.field}>
-                <label className={styles.label}>Language</label>
-                <select
-                  value={selectedLanguage}
-                  onChange={(e) => handleLanguageChange(e.target.value)}
-                  className={styles.select}
-                  disabled={!step4Active}
-                >
-                  {languages.map((lang) => {
-                    const code = getLanguageCode(lang);
-                    return (
-                      <option key={code} value={code}>
-                        {lang.name} ({code})
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-
-              {step4Complete && (
-                <div className={styles.stepCompleteHint}>
-                  ✓ Avatar and language selected
-                </div>
+        {step4Active && connectionStatus === "success" && (
+          <>
+            <div className={styles.field}>
+              <label className={styles.label}>Avatar</label>
+              <select
+                value={selectedAvatar}
+                onChange={(e) => handleAvatarChange(e.target.value)}
+                className={styles.select}
+                disabled={!step4Active}
+              >
+                {avatars.map((avatar) => {
+                  const id = getAvatarId(avatar);
+                  const label = avatar.name ? `${avatar.name} (${id})` : id;
+                  return (
+                    <option key={id} value={id}>
+                      {label}
+                    </option>
+                  );
+                })}
+              </select>
+              {selectedAvatar && (
+                <div className={styles.info}>Avatar ID: {selectedAvatar}</div>
               )}
-            </>
-          )}
-        </div>
-      )}
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.label}>Language</label>
+              <select
+                value={selectedLanguage}
+                onChange={(e) => handleLanguageChange(e.target.value)}
+                className={styles.select}
+                disabled={!step4Active}
+              >
+                {languages.map((lang) => {
+                  const code = getLanguageCode(lang);
+                  return (
+                    <option key={code} value={code}>
+                      {lang.name} ({code})
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+            {step4Complete && (
+              <div className={styles.stepCompleteHint}>
+                ✓ Avatar and language selected
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

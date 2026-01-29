@@ -307,9 +307,7 @@ export function ChatPanel({
   const wsClientRef = useRef<RavatarWsClient | null>(null);
   const userId = useRef(getUserId());
 
-  const apiBase = (
-    import.meta.env.VITE_RAVATAR_API_URL || "https://chat.rvtr.ai"
-  ).replace(/\/+$/, "");
+  const apiBase = "https://chat.rvtr.ai".replace(/\/+$/, "");
 
   const api = useMemo(() => {
     const a = new RavatarApi(apiBase);
@@ -365,16 +363,9 @@ export function ChatPanel({
   }, []);
 
   const buildWsUrl = () => {
-    const wsEnv = import.meta.env.VITE_RAVATAR_WS_URL;
-    const wsBase = wsEnv
-      ? wsEnv.endsWith("/ws/chat")
-        ? wsEnv
-        : wsEnv.endsWith("/")
-          ? `${wsEnv}ws/chat`
-          : `${wsEnv}/ws/chat`
-      : "wss://chat.rvtr.ai/ws/chat";
+    const wsEnv = "wss://chat.rvtr.ai/ws/chat";
 
-    return `${wsBase}?token=${encodeURIComponent(jwtToken)}`;
+    return `${wsEnv}?token=${encodeURIComponent(jwtToken)}`;
   };
 
   const blobToBase64 = (blob: Blob): Promise<string> => {
@@ -784,9 +775,7 @@ export function ChatPanel({
     wsClientRef.current = client;
 
     client.onMessage((message) => {
-      if (import.meta.env.VITE_DEBUG_LOGS === "true") {
-        console.log("[WS] Incoming:", message);
-      }
+      console.log("[WS] Incoming:", message);
       if (message.type === "connection") {
         setWsStatus("connected");
         addSystemMessage("Connected to Ravatar WebSocket");

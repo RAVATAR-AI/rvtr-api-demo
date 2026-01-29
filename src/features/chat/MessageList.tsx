@@ -27,7 +27,7 @@ export function MessageList({ messages }: MessageListProps) {
   return (
     <div className={styles.container}>
       {messages
-        // .filter((m) => m.role !== "system")
+        .filter((m) => m.role !== "system")
         .map((message) => {
           const roleClass =
             message.role === "user"
