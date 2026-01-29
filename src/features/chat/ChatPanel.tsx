@@ -850,13 +850,34 @@ export function ChatPanel({
 
     if (type === "incoming" || direction === "incoming") {
       if (!answerText) return;
+      const rawChatType =
+        typeof anyData.chat_type === "string" ? anyData.chat_type : undefined;
+
+      const chat_type: ChatMessage["chat_type"] =
+        rawChatType === "text" ||
+        rawChatType === "voice" ||
+        rawChatType === "video"
+          ? rawChatType
+          : undefined;
+
+      const rawRequestType =
+        typeof anyData.requestType === "string"
+          ? anyData.requestType
+          : undefined;
+
+      const requestType: ChatMessage["requestType"] =
+        rawRequestType === "text" || rawRequestType === "audio"
+          ? rawRequestType
+          : undefined;
+
       const assistantMessage: ChatMessage = {
         id: generateUUID(),
         role: "assistant",
         content: answerText,
         timestamp,
-        // keep original fileUrl (if any) so MessageList can render a link
         fileUrl,
+        chat_type,
+        requestType,
       };
       setMessages((prev) => [...prev, assistantMessage]);
 

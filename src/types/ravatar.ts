@@ -40,16 +40,6 @@ export interface IncomingMessage {
   timestamp?: string;
 }
 
-// UI Types
-export interface ChatMessage {
-  id: string;
-  role: "user" | "assistant" | "system";
-  content: string;
-  timestamp: string;
-  fileUrl?: string;
-  isHistory?: boolean;
-}
-
 export interface AvatarConfig {
   avatar_id: string;
   voice_id?: string;
@@ -76,4 +66,17 @@ export interface ChatHistoryMessage {
 export interface ChatHistoryResponse {
   payload: ChatHistoryMessage[];
   has_more_messages: boolean;
+}
+
+// UI Types
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  timestamp: string;
+  // Optional metadata (present for voice/live messages, may be absent for system/history UI items)
+  requestType?: "audio" | "text";
+  chat_type?: ChatHistoryChatType;
+  fileUrl?: string;
+  isHistory?: boolean;
 }
