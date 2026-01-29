@@ -1,6 +1,6 @@
 .container {
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: transparent;
   border-radius: 8px;
   max-width: 700px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 .title {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #333;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .actions {
@@ -24,18 +24,18 @@
   align-items: center;
   margin-bottom: 15px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #121a23;
   border-radius: 6px;
 }
 
 .status {
   font-size: 14px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .connectButton {
   padding: 8px 16px;
-  background-color: #28a745;
+  background-color: #2bb673;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -45,13 +45,13 @@
 }
 
 .disconnectButton {
-  background-color: #dc3545;
+  background-color: #e24b4b;
 }
 
 .warning {
   padding: 10px;
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: rgba(242, 201, 76, 0.16);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 4px;
   margin-bottom: 15px;
   font-size: 13px;
@@ -66,15 +66,17 @@
 .input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 4px;
   font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .sendButton {
   padding: 10px 24px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #f2c94c;
+  color: #0b0f14;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -83,7 +85,7 @@
 }
 
 .disabledButton {
-  background-color: #ccc;
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -109,11 +111,11 @@
 }
 
 .liveStart {
-  background: #28a745;
+  background: #2bb673;
 }
 
 .liveStop {
-  background: #dc3545;
+  background: #e24b4b;
 }
 
 .voiceRow {
@@ -123,13 +125,13 @@
   align-items: center;
   margin-top: 12px;
   padding: 10px;
-  background: #fff;
+  background: #121a23;
   border-radius: 6px;
 }
 
 .voiceHint {
   font-size: 12px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.72);
 }
 .pixelStreamingWrap {
   /* margin: 12px 0; */
@@ -150,12 +152,14 @@
 
 .pixelStreamingTitle {
   font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .pixelStreamingLink {
   font-size: 12px;
   text-decoration: none;
   opacity: 0.9;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .pixelStreamingLink:hover {
@@ -191,12 +195,13 @@
 .vadIdle {
   border: 1px solid rgba(255, 255, 255, 0.15);
   opacity: 0.8;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .vadSilence {
-  border: 1px solid rgba(0, 255, 0, 0.35);
+  border: 1px solid rgba(43, 182, 115, 0.55);
 }
 
 .vadSpeaking {
-  border: 1px solid rgba(255, 165, 0, 0.55);
+  border: 1px solid rgba(242, 201, 76, 0.75);
 }

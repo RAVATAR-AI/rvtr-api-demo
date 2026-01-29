@@ -97,7 +97,7 @@ function App() {
       <footer className="app-footer">
         <p>
           {isConfigured
-            ? `✅ All steps completed! Ready to Chat (Avatar ID: ${selectedAvatarId}, Language: ${selectedLanguage})`
+            ? `✅ All steps completed! Ready to Chat`
             : `⚙️ Setup in progress: ${completedSteps}/4 steps completed`}
         </p>
       </footer>

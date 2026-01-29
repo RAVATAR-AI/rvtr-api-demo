@@ -426,7 +426,7 @@ export function SettingsPanel({
       >
         <h3 className={styles.sectionTitle}>
           {getStepStatus(step4Complete, step4Active, "idle")} Step 4: Use loaded
-          connection data (Avatar & Language)
+          connection data
         </h3>
         {!step4Active && (
           <div className={styles.stepHint}>
