@@ -752,7 +752,7 @@ export function ChatPanel({
       wsClientRef.current?.disconnect();
       wsClientRef.current = null;
       setWsStatus("disconnected");
-      addSystemMessage("Disconnected from Ravatar");
+      addSystemMessage("Disconnected from RAVATAR");
 
       if (licenseId) void handleStopLive();
       return;
@@ -769,7 +769,7 @@ export function ChatPanel({
     console.log("[WS] URL:", wsUrlWithToken);
 
     setWsStatus("connecting");
-    addSystemMessage("Connecting to Ravatar...");
+    addSystemMessage("Connecting to RAVATAR...");
 
     const client = new RavatarWsClient({ url: wsUrlWithToken });
     wsClientRef.current = client;
@@ -778,7 +778,7 @@ export function ChatPanel({
       console.log("[WS] Incoming:", message);
       if (message.type === "connection") {
         setWsStatus("connected");
-        addSystemMessage("Connected to Ravatar WebSocket");
+        addSystemMessage("Connected to RAVATAR WebSocket");
       } else if (message.type === "message") {
         handleIncomingMessage(message.data as IncomingMessage);
       }

@@ -2,6 +2,10 @@
 
 Public demo application showcasing how to integrate the **RAVATAR API**.
 
+## 📘 API Documentation
+
+- **RAVATAR API Guide (PDF):** https://cdn.rvtr.ai/images/ravatar-api-guide.pdf
+
 ## 📋 Prerequisites
 
 - **Node.js**: v20+
@@ -73,9 +77,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 5: Connect WebSocket
 
-
 ![Step 5.0 – Switch to the chat](./screenshots/step-7-live-mode.png)
-![Step 5 – WebSocket Connected](./screenshots/step-5-ws-connected.png)
 
 1. Switch to the **Chat** tab (💬)
 2. Click the **"Connect WS"** button
@@ -84,13 +86,15 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 6: Start Chatting
 
-![Step 6 – Chat Messages](./screenshots/step-6-chat.png)
+![Step 5 – WebSocket Connected](./screenshots/step-5-ws-connected.png)
 
 1. Type your message in the input field
 2. Press **Enter** or click **"Send"**
 3. View assistant responses in the message list
 
 ### Step 7: Live Mode (3D Avatar + Voice Interaction)
+
+![Step 6 – Chat Messages](./screenshots/step-6-chat.png)
 
 Live Mode allows you to interact with a real-time **3D avatar** using **voice** via Pixel Streaming.
 
@@ -272,9 +276,9 @@ To see detailed logging:
 
 ## 🎯 Who this demo is for
 
-- Developers integrating Ravatar into web applications
+- Developers integrating RAVATAR into web applications
 - Teams evaluating Live Mode and Pixel Streaming
-- Anyone looking for a minimal, production-style Ravatar reference implementation
+- Anyone looking for a minimal, production-style RAVATAR reference implementation
 
 ## 📝 License
 

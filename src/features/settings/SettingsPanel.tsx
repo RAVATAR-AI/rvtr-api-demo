@@ -340,7 +340,7 @@ export function SettingsPanel({
             type="text"
             value={projectId}
             onChange={(e) => setProjectId(e.target.value)}
-            placeholder="Ravatar project ID"
+            placeholder="RAVATAR project ID"
             className={styles.input}
             disabled={!step1Active}
           />

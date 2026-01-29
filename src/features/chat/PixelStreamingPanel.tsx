@@ -56,7 +56,7 @@ export function PixelStreamingPanel({
 
       <iframe
         key={`${licenseId}:${streamingUrl}:${jwtToken}`}
-        title="Ravatar Pixel Streaming"
+        title="RAVATAR Pixel Streaming"
         src={buildIframeSrc(streamingUrl, jwtToken)}
         className={styles.pixelStreamingIframe}
         allow="camera; microphone; autoplay; fullscreen; clipboard-read; clipboard-write; pointer-lock; encrypted-media"
