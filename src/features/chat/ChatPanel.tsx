@@ -972,10 +972,7 @@ export function ChatPanel({
       />
 
       {!canConnect && (
-        <div className={styles.warning}>
-          ⚠️ Please complete settings first: Get JWT → Load Connection → Select
-          Avatar & Language
-        </div>
+        <div className={styles.warning}>⚠️ Please complete settings first</div>
       )}
       <div className={isLiveMode ? styles.liveLayout : styles.chatLayout}>
         {isLiveMode && (
