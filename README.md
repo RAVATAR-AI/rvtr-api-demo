@@ -63,21 +63,18 @@ Follow these steps to use the RAVATAR API Demo:
 ![Step 3 – Load Connection](./screenshots/step-3-load-connection.png)
 
 1. Click the **"Load Connection"** button
-2. This retrieves:
-   - Available avatars (`avatars_info`)
-   - Supported languages (`languages`)
-   - Session ID (if required by API)
-3. Status will show ✅ success when complete
+2. Status will show ✅ success when complete
 
 ### Step 4: Use loaded connection data (Avatar & Language)
 
 ![Step 4 – Select Avatar and Language](./screenshots/step-4-avatar-language.png)
 
-1. Both selections are automatically saved
+1. Selections are automatically saved
 
 ### Step 5: Connect WebSocket
 
 ![Step 5.0 – Switch to the chat](./screenshots/step-7-live-mode.png)
+![Step 5 – WebSocket Connect](./screenshots/step-5.1-ws-connect.png)
 
 1. Switch to the **Chat** tab (💬)
 2. Click the **"Connect WS"** button
@@ -215,7 +212,7 @@ The application handles the following HTTP status codes:
 
 - **Cause**: Invalid API URL or network issue
 - **Solution**:
-  - Verify your API URL in Settings
+  - Verify your API URL
   - Check your internet connection
 
 ### "Failed to load connection"
@@ -249,36 +246,6 @@ The application handles the following HTTP status codes:
 
 - Click the **Open** link (new tab). If it works there but not in the iframe, check DevTools Console for `X-Frame-Options` / `frame-ancestors` errors (server-side change required).
 - If the app is HTTPS, ensure the `streamingUrl` is also HTTPS (mixed content is blocked).
-
-### Enable Debug Mode
-
-To see detailed logging:
-
-2. Restart development server: `yarn dev`
-3. Open browser console (F12)
-4. All API and WebSocket events will be logged
-
-## 🔒 Security Notes
-
-- Never commit your `.env` file to version control
-- JWT tokens are stored in memory (React state) only
-- User IDs are generated and persisted in localStorage
-- All API communication uses HTTPS/WSS protocols
-
-## 📦 Technology Stack
-
-- **React 19**: UI library
-- **Vite 7**: Build tool and dev server
-- **TypeScript 5.9**: Type safety and developer experience
-- **Yarn**: Package manager (no npm usage)
-- **Native WebSocket API**: Real-time communication
-- **Fetch API**: HTTP requests
-
-## 🎯 Who this demo is for
-
-- Developers integrating RAVATAR into web applications
-- Teams evaluating Live Mode and Pixel Streaming
-- Anyone looking for a minimal, production-style RAVATAR reference implementation
 
 ## 📝 License
 

@@ -66,10 +66,6 @@ function App() {
               ? `Complete all 4 setup steps to enable Chat (${completedSteps}/4 completed)`
               : "Go to Chat"
           }
-          // style={{
-          //   opacity: isConfigured ? 1 : 0.5,
-          //   cursor: isConfigured ? "pointer" : "not-allowed",
-          // }}
         >
           💬 Chat
         </button>
