@@ -93,8 +93,13 @@ export function MessageList({ messages }: MessageListProps) {
                   ? styles.systemMessage
                   : styles.assistantMessage;
 
+            const hasAudio = Boolean(fileUrl && isAudioUrl(fileUrl));
+            const widthClass = hasAudio ? styles.hasAudio : "";
             return (
-              <div key={id} className={`${styles.message} ${bubbleRoleClass}`}>
+              <div
+                key={id}
+                className={`${styles.message} ${bubbleRoleClass} ${widthClass}`}
+              >
                 <div className={styles.role}>
                   {role === "user"
                     ? "👤 You"

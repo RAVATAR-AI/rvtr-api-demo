@@ -65,7 +65,7 @@ Follow these steps to use the RAVATAR API Demo:
 1. Click the **"Load Connection"** button
 2. Status will show ✅ success when complete
 
-### Step 4: Use loaded connection data (Avatar & Language)
+### Step 4: Use loaded connection data
 
 ![Step 4 – Select Avatar and Language](./screenshots/step-4-avatar-language.png)
 
