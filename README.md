@@ -44,7 +44,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 1: Configure API
 
-![Step 1 – Set Project ID](./screenshots/step-1-set-project-id.png)
+<img src="./screenshots/step-1-set-project-id.png" width="500" alt="Step 1 – Set Project ID" />
 
 1. Open the application in your browser
 2. Go to the **Settings** tab (⚙️)
@@ -52,7 +52,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 2: Get JWT Token
 
-![Step 2 – Get JWT Token](./screenshots/step-2-get-jwt.png)
+<img src="./screenshots/step-2-get-jwt.png" width="500" alt="Step 2 – Get JWT Token" />
 
 1. Click the **"Get JWT"** button
 2. Wait for the JWT token to be retrieved
@@ -60,21 +60,25 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 3: Load Connection Data
 
-![Step 3 – Load Connection](./screenshots/step-3-load-connection.png)
+<img src="./screenshots/step-3-load-connection.png" width="500" alt="Step 3 – Load Connection" />
 
 1. Click the **"Load Connection"** button
 2. Status will show ✅ success when complete
 
 ### Step 4: Use loaded connection data
 
-![Step 4 – Select Avatar and Language](./screenshots/step-4-avatar-language.png)
+<img src="./screenshots/step-4-avatar-language.png" width="500" alt="Step 4 – Select Avatar and Language" />
 
 1. Selections are automatically saved
 
 ### Step 5: Connect WebSocket
 
-![Step 5.0 – Switch to the chat](./screenshots/step-7-live-mode.png)
-![Step 5 – WebSocket Connect](./screenshots/step-5.1-ws-connect.png)
+<p>
+  <img src="./screenshots/step-7-live-mode.png" width="500" alt="Switch to Chat tab" />
+</p>
+<p>
+  <img src="./screenshots/step-5.1-ws-connect.png" width="500" alt="WebSocket Connect" />
+</p>
 
 1. Switch to the **Chat** tab (💬)
 2. Click the **"Connect WS"** button
@@ -83,7 +87,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 6: Start Chatting
 
-![Step 5 – WebSocket Connected](./screenshots/step-5-ws-connected.png)
+<img src="./screenshots/step-6-chat.png" width="500" alt="Chat Messages" />
 
 1. Type your message in the input field
 2. Press **Enter** or click **"Send"**
@@ -91,7 +95,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 7: Live Mode (3D Avatar + Voice Interaction)
 
-![Step 6 – Chat Messages](./screenshots/step-6-chat.png)
+<img src="./screenshots/step-6-chat.png" width="500" alt="Chat Messages" />
 
 Live Mode allows you to interact with a real-time **3D avatar** using **voice** via Pixel Streaming.
 
