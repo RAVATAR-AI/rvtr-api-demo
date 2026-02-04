@@ -44,7 +44,7 @@ Follow these steps to use the RAVATAR API Demo:
 
 ### Step 1: Configure API
 
-![Step 1 – Set Project ID](./screenshots/step-1-set-project-id.png)
+<img src="./screenshots/step-1-set-project-id.png" alt="Step 1 – Set Project ID" width="500">
 
 1. Open the application in your browser
 2. Go to the **Settings** tab (⚙️)
